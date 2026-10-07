@@ -144,22 +144,28 @@ export const OrdersView: React.FC<OrdersViewProps> = ({ orders, onNavigate }) =>
                 {/* Details & Specifications Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-[#f5f3ed] p-5 rounded-xl border border-[#DCD7CA]/60">
                   <div className="flex gap-4">
-                    <img
-                      src={ord.item.model.image}
-                      alt={ord.item.model.name}
-                      className="w-20 h-20 rounded-lg object-cover border border-[#DCD7CA]"
-                    />
+                    {ord.item?.model?.image ? (
+                      <img
+                        src={ord.item.model.image}
+                        alt={ord.item?.model?.name || 'Mueble'}
+                        className="w-20 h-20 rounded-lg object-cover border border-[#DCD7CA]"
+                      />
+                    ) : (
+                      <div className="w-20 h-20 rounded-lg bg-[#f0eee8] border border-[#DCD7CA] flex items-center justify-center text-[#566B72]">
+                        <span className="material-symbols-outlined text-[24px]">inventory_2</span>
+                      </div>
+                    )}
                     <div>
                       <span className="font-headline text-[10px] font-bold text-[#566B72] uppercase">
-                        {ord.item.model.modelCode}
+                        {ord.item?.model?.modelCode || '#MOD-01'}
                       </span>
                       <h4 className="font-headline text-[15px] font-bold text-[#003745]">
-                        {ord.item.model.name}
+                        {ord.item?.model?.name || 'Mueble a Medida'}
                       </h4>
                       <p className="text-[12px] text-[#1b1c18] font-mono mt-0.5">
-                        {ord.item.alto} × {ord.item.ancho} × {ord.item.prof} cm
+                        {ord.item?.alto ?? 180} × {ord.item?.ancho ?? 160} × {ord.item?.prof ?? 40} cm
                       </p>
-                      <p className="text-[11px] text-[#566B72] mt-0.5">Madera: {ord.item.wood.name}</p>
+                      <p className="text-[11px] text-[#566B72] mt-0.5">Madera: {ord.item?.wood?.name || 'Roble Americano'}</p>
                     </div>
                   </div>
 
