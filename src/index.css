@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --font-space: "Space Grotesk", sans-serif;
+  --font-work: "Work Sans", sans-serif;
+
+  --color-surface: #fbf9f3;
+  --color-surface-dim: #dcdad4;
+  --color-surface-bright: #fbf9f3;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f5f3ed;
+  --color-surface-container: #f0eee8;
+  --color-surface-container-high: #eae8e2;
+  --color-surface-container-highest: #e4e2dd;
+  --color-on-surface: #1b1c18;
+  --color-on-surface-variant: #40484b;
+  --color-inverse-surface: #30312d;
+  --color-inverse-on-surface: #f3f1eb;
+  --color-outline: #70787c;
+  --color-outline-variant: #c0c8cc;
+  --color-surface-tint: #2c6577;
+  --color-primary: #003745;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #0d4f60;
+  --color-on-primary-container: #89bfd3;
+  --color-inverse-primary: #98cfe3;
+  --color-secondary: #3b6471;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #bce6f6;
+  --color-on-secondary-container: #3f6875;
+  --color-tertiary: #492b00;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #683f00;
+  --color-on-tertiary-container: #fba42c;
+  --color-accent-hover: #E58D17;
+  --color-surface-pure: #FFFFFF;
+  --color-border-subtle: #F0EEE8;
+  --color-border-structural: #DCD7CA;
+  --color-text-muted: #566B72;
+  --color-status-error: #C63C28;
+  --color-status-success: #2D7A4C;
+  --color-tertiary-fixed: #ffddb9;
+  --color-tertiary-fixed-dim: #ffb963;
+  --color-on-tertiary-fixed: #2b1700;
+}
+
+body {
+  font-family: var(--font-work), sans-serif;
+  background-color: #fbf9f3;
+  color: #1b1c18;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6, .font-headline {
+  font-family: var(--font-space), sans-serif;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.material-symbols-fill {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Hide scrollbar for clean UI */
+.scrollbar-none::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none,
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

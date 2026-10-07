@@ -1,0 +1,6 @@
+{
+  "name": "Carpintersoft - Estudio 3D & Muebles a Medida",
+  "description": "Plataforma de personalización 3D paramétrica, cotización en tiempo real y asistente IA para diseño y fabricación de muebles a medida.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
