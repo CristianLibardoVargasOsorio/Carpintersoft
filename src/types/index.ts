@@ -87,3 +87,16 @@ export interface OrderRecord {
   status: 'cnc_queued' | 'cutting' | 'assembly' | 'finishing' | 'delivered';
   cncStation: string;
 }
+
+export interface SavedQuote {
+  id: string;
+  title: string;
+  modelCode: string;
+  dimensions: string;
+  woodName: string;
+  date: string;
+  total: number;
+  status: string;
+  image: string;
+  customization?: CustomizationState;
+}

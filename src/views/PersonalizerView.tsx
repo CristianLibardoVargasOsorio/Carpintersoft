@@ -1,14 +1,16 @@
 import React, { useState, useMemo } from 'react';
-import { FurnitureModel, WoodOption, CustomizationState, Screen, QuoteItem } from '../types';
+import { FurnitureModel, WoodOption, CustomizationState, Screen, QuoteItem, SavedQuote } from '../types';
 import { CATALOG_MODELS, WOOD_OPTIONS } from '../data/mockData';
 import { ThreeCanvas } from '../components/ThreeCanvas';
 import { PDFModal } from '../components/PDFModal';
+import { CutListModal } from '../components/CutListModal';
 
 interface PersonalizerViewProps {
   customization: CustomizationState;
   onChangeCustomization: (updated: CustomizationState) => void;
   onNavigate: (screen: Screen) => void;
   onAddToCart: (item: QuoteItem) => void;
+  onSaveQuote?: (quote: SavedQuote) => void;
 }
 
 export const PersonalizerView: React.FC<PersonalizerViewProps> = ({
@@ -16,13 +18,16 @@ export const PersonalizerView: React.FC<PersonalizerViewProps> = ({
   onChangeCustomization,
   onNavigate,
   onAddToCart,
+  onSaveQuote,
 }) => {
   const [isRotating, setIsRotating] = useState(false);
   const [doorsOpen, setDoorsOpen] = useState(false);
   const [wireframe, setWireframe] = useState(false);
   const [cameraView, setCameraView] = useState<'iso' | 'front' | 'top'>('iso');
   const [pdfModalOpen, setPdfModalOpen] = useState(false);
+  const [cutListOpen, setCutListOpen] = useState(false);
   const [aiOptimizedToast, setAiOptimizedToast] = useState(false);
+  const [savedQuoteToast, setSavedQuoteToast] = useState(false);
 
   const { model, alto, ancho, prof, shelves, wood, finish, hardware, includeInstallation } =
     customization;

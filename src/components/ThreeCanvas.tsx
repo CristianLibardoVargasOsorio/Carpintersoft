@@ -92,8 +92,8 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
     camera.lookAt(0, 0.8, 0);
     cameraRef.current = camera;
 
-    // Renderer with soft shadow
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    // Renderer with soft shadow and drawing buffer preservation for export
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.shadowMap.enabled = true;
@@ -421,6 +421,15 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
     }
   }, [cameraView, alto]);
 
+  const handleCaptureSnapshot = () => {
+    if (!rendererRef.current) return;
+    const dataUrl = rendererRef.current.domElement.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.download = `carpintersoft-render-${alto}x${ancho}x${prof}cm.png`;
+    link.href = dataUrl;
+    link.click();
+  };
+
   const toggleFullscreen = () => {
     setIsFullscreen(!isFullscreen);
   };
@@ -453,15 +462,24 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
         </span>
       </div>
 
-      {/* Top Right AR and Render Toggle */}
+      {/* Top Right AR, Snapshot and Render Toggle */}
       <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
+        <button
+          onClick={handleCaptureSnapshot}
+          className="p-2 rounded-lg bg-[#ffffff]/90 hover:bg-white backdrop-blur-md text-[#003745] shadow-sm transition-colors flex items-center gap-1 font-headline text-[12px] font-semibold cursor-pointer"
+          title="Descargar render fotográfico PNG"
+        >
+          <span className="material-symbols-outlined text-[18px]">photo_camera</span>
+          <span className="hidden sm:inline">Captura PNG</span>
+        </button>
+
         <button
           onClick={() => setRenderMode(renderMode === '3d' ? 'photo' : '3d')}
           className="p-2 rounded-lg bg-[#ffffff]/90 hover:bg-white backdrop-blur-md text-[#003745] shadow-sm transition-colors flex items-center gap-1 font-headline text-[12px] font-semibold cursor-pointer"
           title="Alternar entre 3D interactivo y Foto Render"
         >
           <span className="material-symbols-outlined text-[18px]">
-            {renderMode === '3d' ? 'photo_camera' : '3d_rotation'}
+            {renderMode === '3d' ? 'wallpaper' : '3d_rotation'}
           </span>
           <span className="hidden sm:inline">{renderMode === '3d' ? 'Foto Render' : 'Visor 3D'}</span>
         </button>
